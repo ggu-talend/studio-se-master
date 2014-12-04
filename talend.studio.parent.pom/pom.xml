@@ -4,14 +4,42 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.talend.studio</groupId>
 	<artifactId>parent-pom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>6.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho.version>0.21.0</tycho.version>
 		<tycho-extras.version>0.21.0</tycho-extras.version>
-		<talend-repo.url>http://newbuild.talend.com/targetplatform/5.6/20140725</talend-repo.url>
+		<base.version>6.0.0</base.version>
+		<talend.nexus.url>http://newbuild.talend.com:8081/nexus/content/repositories</talend.nexus.url>
+		<talendtargetplatform.url>http://newbuild.talend.com/targetplatform</talendtargetplatform.url>
+		<talendtargetplatformversion.url>${talendtargetplatform.url}/${base.version}</talendtargetplatformversion.url>
+		<talend-repo.url>${talendtargetplatformversion.url}/main/</talend-repo.url>
+		<babel-repo.url>${talendtargetplatformversion.url}/babel/</babel-repo.url>
+		<equinox.build>org.eclipse.equinox.launcher_1.1.0.v20100507.jar</equinox.build>
+		<opensourcesnapshot-repo.url>${talend.nexus.url}/TalendOpenSourceSnapshot/</opensourcesnapshot-repo.url>
+		<opensourcerelease-repo.url>${talend.nexus.url}/TalendOpenSourceRelease/</opensourcerelease-repo.url>
+		<jgit.dirtyWorkingTree.official>error</jgit.dirtyWorkingTree.official>
+		<osgi.ws>win32</osgi.ws>
+		<osgi.os>win32</osgi.os>
+		<osgi.arch>x86</osgi.arch>
 	</properties>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>talend_nexus_deployment</id>
+			<url>${opensourcesnapshot-repo.url}</url>
+			<snapshots><enabled>true</enabled></snapshots>
+			<releases><enabled>false</enabled></releases>
+		</snapshotRepository>
+		<repository>
+			<id>talend_nexus_deployment</id>
+			<url>${opensourcerelease-repo.url}</url>
+			<snapshots><enabled>false</enabled></snapshots>
+			<releases><enabled>true</enabled></releases>
+		</repository>
+	</distributionManagement>
 
 	<repositories>
 		<repository>
@@ -20,58 +48,68 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>gwt-maven</id>
-			<url>
-         http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
-			</url>
-		</repository> 
-
+			<id>babel_repo</id>
+			<url>${babel-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>talend_open</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>${opensourcerelease-repo.url}</url>
+		</repository>
+		<repository>
+			<id>talend_open_snapshots</id>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>${opensourcesnapshot-repo.url}</url>
+		</repository>
 	</repositories>  
 
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
-			</plugin>     
+			</plugin>  
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>			
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<!--<dependency-resolution>
-        		<optionalDependencies>ignore</optionalDependencies>
-      		</dependency-resolution>-->
-
-
 					<environments>
-						<!--           <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
-              <arch>x86</arch>
-            </environment>
-            <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
-              <arch>x86_64</arch>
-            </environment>
-          
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86</arch>
-            </environment>
- -->             <environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86_64</arch>
-						</environment>
 						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
+							<os>${osgi.ws}</os>
+							<ws>${osgi.os}</ws>
+							<arch>${osgi.arch}</arch>
 						</environment>
 					</environments>
 					<filters>
@@ -81,7 +119,6 @@
 							<id>org.eclipse.ui.views.properties.tabbed</id>
 							<restrictTo>
 								<version>3.5.101.5_10_2</version>
-								<!-- <versionRange>[3.6,3.7)</versionRange> -->
 							</restrictTo>
 						</filter>
 
@@ -103,14 +140,7 @@
 				 </filter>
 -->				 
 					</filters>
-					<!--				<target>
-						<artifact>
-							<groupId>org.talend.studio</groupId>
-							<artifactId>talend.target.definition</artifactId>
-							<version>0.0.1-SNAPSHOT</version>
-						</artifact>
-				</target>			  
--->        </configuration>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -122,15 +152,121 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-			</plugin>      
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<configuration>
-					<strictBinIncludes>false</strictBinIncludes>
-				</configuration>
-			</plugin>      
+			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>nonofficial</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<release.suffix>-SNAPSHOT</release.suffix>
+				<revision.filename>SNAP</revision.filename>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-packaging-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.eclipse.tycho.extras</groupId>
+								<artifactId>tycho-buildtimestamp-jgit</artifactId>
+								<version>${tycho-extras.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<strictBinIncludes>false</strictBinIncludes>
+							<format>yyyyMMdd'_'HHmm'${release.suffix}'</format>
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+								<!-- By default, name of the current user is inserted into generated MANIFEST.MF files -->
+								<manifestEntries>
+									<Built-By></Built-By>
+								</manifestEntries>
+							</archive>
+							<timestampProvider>jgit</timestampProvider>
+							<jgit.ignore>pom.xml</jgit.ignore>
+							<jgit.dirtyWorkingTree>ignore</jgit.dirtyWorkingTree>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>official</id>
+			<properties>
+				<talendtargetplatform.path>${buildRootDir}/../targetplatform</talendtargetplatform.path>
+				<unqualifiedVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</unqualifiedVersion>
+				<talendtargetplatformversion.path>${talendtargetplatform.path}/${unqualifiedVersion}</talendtargetplatformversion.path>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>properties-maven-plugin</artifactId>
+						<version>1.0-alpha-2</version>
+						<executions>
+							<execution>
+								<id>read-build-properties</id>
+								<phase>initialize</phase>
+								<goals>
+									<goal>read-project-properties</goal>
+								</goals>
+								<configuration>
+									<files>
+										<file>${buildRootDir}/config/build.50more.properties</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>      
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-packaging-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.eclipse.tycho.extras</groupId>
+								<artifactId>tycho-buildtimestamp-jgit</artifactId>
+								<version>${tycho.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<strictBinIncludes>false</strictBinIncludes>
+							<format>yyyyMMdd'_'HHmm'${release.suffix}'</format>
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+								<!-- By default, name of the current user is inserted into generated MANIFEST.MF files -->
+								<manifestEntries>
+									<Built-By></Built-By>
+								</manifestEntries>
+							</archive>
+							<timestampProvider>jgit</timestampProvider>
+							<jgit.ignore>
+pom.xml
+product.properties
+</jgit.ignore>
+							<jgit.dirtyWorkingTree>${jgit.dirtyWorkingTree.official}</jgit.dirtyWorkingTree>
+						</configuration>
+					</plugin>
+					<!--<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<configuration>
+							<baselineRepositories>
+								<repository>
+									<url>file:///${talendtargetplatformversion.path}/TOS</url>
+								</repository>
+							</baselineRepositories>
+						</configuration>
+					</plugin>-->
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

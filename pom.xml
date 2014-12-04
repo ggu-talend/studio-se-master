@@ -1,30 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.talend.studio</groupId>
-  <artifactId>tos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-    <module>talend.studio.parent.pom</module>
-	<module>../tbd-studio-se</module>
-    <module>../tcommon-studio-se</module>
-    <module>../tdi-studio-se</module>
-    <module>../tdq-studio-se</module>
-    <module>../tesb-studio-se</module>
-    <module>../tmdm-common</module>
-    <module>../tmdm-studio-se</module>
-    <module>../toem-studio-se</module>
-  </modules>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <version>0.21.0</version>
-        <extensions>true</extensions>
-      </plugin>
-    </plugins>
-  </build>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.talend.studio</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>6.0.0-SNAPSHOT</version>
+		<relativePath></relativePath>
+	</parent>
+
+	<groupId>org.talend.studio</groupId>
+	<artifactId>tos</artifactId>
+	<version>6.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<repositories>
+		<repository>
+			<id>talend_open</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>http://newbuild.talend.com:8081/nexus/content/repositories/TalendOpenSourceRelease/</url>
+		</repository>
+		<repository>
+			<id>talend_open_snapshots</id>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>http://newbuild.talend.com:8081/nexus/content/repositories/TalendOpenSourceSnapshot/</url>
+		</repository>
+	</repositories>
+
+	<profiles>
+		<profile>
+			<id>build-no-oem</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>../tbd-studio-se</module>
+				<module>../tcommon-studio-se</module>
+				<module>../tdi-studio-se</module>
+				<module>../tdq-studio-se</module>
+				<module>../tesb-studio-se</module>
+				<module>../tmdm-common</module>
+				<module>../tmdm-studio-se</module>
+				<module>build</module>
+			</modules>
+		</profile>
+		
+		<profile>
+			<id>official</id>
+			<modules>
+				<module>../tbd-studio-se</module>
+				<module>../tcommon-studio-se</module>
+				<module>../tdi-studio-se</module>
+				<module>../tdq-studio-se</module>
+				<module>../tesb-studio-se</module>
+				<module>../tmdm-common</module>
+				<module>../tmdm-studio-se</module>
+				<module>../toem-studio-se</module>
+				<module>build</module>
+				<!--<module>build/talend.studio.tos.all.p2.product</module>-->
+			</modules>
+			<build>
+				<plugins>
+					<!--<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							 Cleanup p2 repo for reproducible version qualifiers 
+							<execution>
+								<id>cleanup-p2-repo</id>
+								<phase>install</phase>
+								<configuration>
+									<target>
+										<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath" />
+										<echo>Checking for p2 repository ${project.basedir}/build/talend.studio.tos.all.p2.product/target/org.talend.studio.tos.all.p2.product-${project.version}.zip</echo>
+										<if>
+											<available file="${project.basedir}/build/talend.studio.tos.all.p2.product/target/org.talend.studio.tos.all.p2.product-${project.version}.zip" />
+											<then>
+												<echo>Cleaning up p2 repository for reproducible version qualifiers: ${talendtargetplatformversion.path}/TOS</echo>
+												<mkdir dir="${talendtargetplatformversion.path}/TOS" />
+												<delete>
+													<fileset dir="${talendtargetplatformversion.path}/TOS">
+														<include name="**/*" />
+													</fileset>
+												</delete>
+												<echo>Unzipping p2 repository for reproducible version qualifiers: ${talendtargetplatformversion.path}/TOS</echo>
+												<unzip dest="${talendtargetplatformversion.path}/TOS" src="${project.basedir}/build/talend.studio.tos.all.p2.product/target/org.talend.studio.tos.all.p2.product-${project.version}.zip" />
+											</then>
+										</if>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>ant-contrib</groupId>
+								<artifactId>ant-contrib</artifactId>
+								<version>1.0b3</version>
+								<exclusions>
+									<exclusion>
+										<groupId>ant</groupId>
+										<artifactId>ant</artifactId>
+									</exclusion>
+								</exclusions>
+							</dependency>
+							<dependency>
+								<groupId>org.apache.ant</groupId>
+								<artifactId>ant-nodeps</artifactId>
+								<version>1.8.1</version>
+							</dependency>
+						</dependencies>
+					</plugin>-->
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

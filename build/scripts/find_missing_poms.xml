@@ -1,0 +1,25 @@
+<project name="proj" default="checkRepos">
+	<path id="project.classpath">
+	</path>
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="project.classpath" />
+	<property name="buildRoot" value="../../.." />
+	<target name="checkRepos">
+		<delete file="./missing_poms.txt" failonerror="false"/>
+		<dirname property="proj.basedir" file="${ant.file.proj}" />
+		<foreach target="checkDir" param="dir">
+			<path>  
+				<dirset dir="${proj.basedir}/${buildRoot}" includes="**/plugins/*,**/features/*" excludes="**/studio-se-master/**" />
+			</path> 
+		</foreach>
+	</target>
+	<target name="checkDir">
+		<echo>${dir}</echo>
+		<if>
+			<not><available file="${dir}/pom.xml" /></not>
+			<then>
+				<echo file="./missing_poms.txt" append="true">${dir}${line.separator}</echo>
+			</then>
+		</if>
+	</target>
+</project>
