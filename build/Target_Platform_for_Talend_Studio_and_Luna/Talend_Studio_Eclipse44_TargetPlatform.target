@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Talend Target Platform for Eclipse 4.4 definition" sequenceNumber="170">
+<?pde version="3.8"?><target name="Talend Target Platform for Eclipse 4.4 definition" sequenceNumber="172">
 <locations>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.7.0.v201409021051"/>
@@ -41,11 +41,30 @@
 <repository location="http://download.eclipse.org/releases/luna/"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.codehaus.groovy23.feature.feature.group" version="2.9.0.xx-201406301445-e44"/>
+<unit id="org.codehaus.groovy.jdt.patch.feature.group" version="2.9.0.xx-201406301445-e44"/>
+<unit id="org.codehaus.groovy.eclipse.feature.feature.group" version="2.9.0.xx-201406301445-e44"/>
+<repository location="http://dist.springsource.org/milestone/GRECLIPSE/e4.4/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.apache.lucene.analysis" version="1.9.1.v201101211617"/>
 <unit id="org.apache.lucene.analysis.source" version="1.9.1.v201101211617"/>
 <unit id="org.apache.lucene" version="1.9.1.v201101211617"/>
 <unit id="org.apache.lucene.source" version="1.9.1.v201101211617"/>
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.nebula.widgets.pagination.feature.feature.group" version="1.0.0.201409040050"/>
+<repository location="http://download.eclipse.org/technology/nebula/archives/Q32014/incubation"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.datatools.sdk.feature.feature.group" version="1.12.0.v201406061321-7PB21FEpPZQXdcX0z-_yMM0Hfz0w"/>
+<unit id="org.eclipse.datatools.enablement.sdk.feature.feature.group" version="1.12.0.v201406061321-7IAB-FE9JgeWjZZhMd-z0vb1ifD4"/>
+<repository location="http://download.eclipse.org/datatools/updates/1.12"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.wst.common.fproj.sdk.feature.group" version="3.6.1.v201409111448"/>
+<repository location="http://download.eclipse.org/webtools/repository/luna/"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.1.0.201405012245"/>
@@ -58,6 +77,29 @@
 <unit id="org.eclipse.emf.sdk.feature.group" version="2.10.1.v20140901-1055"/>
 <repository location="http://download.eclipse.org/releases/luna/"/>
 </location>
+<location path="${project_loc:/Target Platform for Talend Studio and Luna}/included/bndtools2.4.0" type="Directory"/>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.ecf.filetransfer.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="3.9.1.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.source.feature.feature.group" version="1.1.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.source.feature.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.source.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.remoteservice.sdk.feature.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.source.feature.feature.group" version="3.9.1.v20140818-1747"/>
+<unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.remoteservice.sdk.examples.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.remoteservice.sdk.examples.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.feature.feature.group" version="1.1.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.remoteservice.sdk.source.feature.feature.group" version="3.9.0.v20140818-1747"/>
+<unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
+<repository location="http://download.eclipse.org/rt/ecf/3.9.0/site.p2"/>
+</location>
+<location path="${project_loc:/Target Platform for Talend Studio and Luna}/included/bouncy-castel" type="Directory"/>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.compare.uml2.feature.group" version="3.0.1.201408191310"/>
 <unit id="org.eclipse.emf.compare.source.feature.group" version="3.0.1.201408191310"/>
@@ -656,6 +698,22 @@
 <repository location="http://download.eclipse.org/eclipse/updates/4.4"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.swtbot.generator.feature.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.eclipse.gef.source.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.eclipse.source.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.ide.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.eclipse.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.forms.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.generator.feature.source.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.ide.source.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.source.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.eclipse.gef.feature.group" version="2.2.1.201402241301"/>
+<unit id="org.eclipse.swtbot.forms.source.feature.group" version="2.2.1.201402241301"/>
+<repository location="http://download.eclipse.org/technology/swtbot/releases/2.2.1/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.m2m.atl.doc.feature.group" version="3.5.0.v201405260755"/>
 <unit id="org.eclipse.m2m.atl.examples.feature.group" version="3.5.0.v201405260755"/>
 <unit id="org.eclipse.m2m.atl.sdk.feature.group" version="3.5.0.v201405260755"/>
@@ -680,72 +738,14 @@
 <unit id="org.eclipse.jst.ws.cxf_sdk.feature.feature.group" version="1.1.201.v201409111807"/>
 <repository location="http://download.eclipse.org/webtools/repository/luna/"/>
 </location>
-<location path="${project_loc:/Target Platform for Talend Studio and Luna}/included/bndtools2.4.0" type="Directory"/>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.ecf.filetransfer.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="3.9.1.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.source.feature.feature.group" version="1.1.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.source.feature.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.ssl.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.source.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.remoteservice.sdk.feature.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient4.source.feature.feature.group" version="3.9.1.v20140818-1747"/>
-<unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.remoteservice.sdk.examples.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.remoteservice.sdk.examples.source.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.feature.feature.group" version="1.1.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.remoteservice.sdk.source.feature.feature.group" version="3.9.0.v20140818-1747"/>
-<unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="1.0.0.v20140818-1747"/>
-<repository location="http://download.eclipse.org/rt/ecf/3.9.0/site.p2"/>
-</location>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.codehaus.groovy23.feature.feature.group" version="2.9.0.xx-201406301445-e44"/>
-<unit id="org.codehaus.groovy.jdt.patch.feature.group" version="2.9.0.xx-201406301445-e44"/>
-<unit id="org.codehaus.groovy.eclipse.feature.feature.group" version="2.9.0.xx-201406301445-e44"/>
-<repository location="http://dist.springsource.org/milestone/GRECLIPSE/e4.4/"/>
-</location>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.wst.common.fproj.sdk.feature.group" version="3.6.1.v201409111448"/>
-<repository location="http://download.eclipse.org/webtools/repository/luna/"/>
-</location>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.xtend.sdk.feature.group" version="2.7.2.v201409160908"/>
-<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
-</location>
-<location path="${project_loc:/Target Platform for Talend Studio and Luna}/included/bouncy-castel" type="Directory"/>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.nebula.widgets.pagination.feature.feature.group" version="1.0.0.201409040050"/>
-<repository location="http://download.eclipse.org/technology/nebula/archives/Q32014/incubation"/>
-</location>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.swtbot.generator.feature.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.eclipse.gef.source.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.eclipse.source.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.ide.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.eclipse.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.forms.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.generator.feature.source.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.ide.source.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.source.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.eclipse.gef.feature.group" version="2.2.1.201402241301"/>
-<unit id="org.eclipse.swtbot.forms.source.feature.group" version="2.2.1.201402241301"/>
-<repository location="http://download.eclipse.org/technology/swtbot/releases/2.2.1/"/>
-</location>
-<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.datatools.sdk.feature.feature.group" version="1.12.0.v201406061321-7PB21FEpPZQXdcX0z-_yMM0Hfz0w"/>
-<unit id="org.eclipse.datatools.enablement.sdk.feature.feature.group" version="1.12.0.v201406061321-7IAB-FE9JgeWjZZhMd-z0vb1ifD4"/>
-<repository location="http://download.eclipse.org/datatools/updates/1.12"/>
-</location>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.nebula.widgets.tablecombo.feature.feature.group" version="1.0.0.201409040043"/>
 <unit id="org.eclipse.nebula.widgets.gallery.feature.feature.group" version="1.0.0.201409040043"/>
 <repository location="http://download.eclipse.org/technology/nebula/archives/Q32014/release/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.xtext.sdk.feature.group" version="2.7.3.v201411190455"/>
+<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
 </location>
 </locations>
 </target>
